@@ -47,6 +47,6 @@ allure {
 test {
     ignoreFailures = true
     useJUnitPlatform()
-//    maxParallelForks = 3 // here three forks shall open in parallel
-//    forkEvery = 1
+    maxParallelForks = 3 // here three forks shall open in parallel
+    forkEvery = 1
 }

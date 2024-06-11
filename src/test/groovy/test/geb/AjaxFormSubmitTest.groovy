@@ -6,7 +6,7 @@ import pages.geb.pages.AjaxFormSubmitPage
 import spock.lang.Unroll
 
 class AjaxFormSubmitTest extends GebSpec {
-    
+
     @Unroll
     def "check Ajax form submit when name: '#name' and description: '#description'"() {
         given:
