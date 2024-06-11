@@ -38,10 +38,14 @@ class FileDownloadDemoPage extends Page {
         return wait.until(f -> f.exists() && f.canRead())
     }
 
-    static void cleanDownloadFolder() {
-        Files.walk(Paths.get(System.getProperty("user.dir") + "/downloads"))
+    static void cleanDownloadFolder(String path) {
+        Files.walk(Paths.get(path))
                 .filter(Files::isRegularFile)
                 .forEach(Files::delete)
+    }
+
+    static void createInputFileDir(String path){
+        new File(path).mkdirs()
     }
 
 }
