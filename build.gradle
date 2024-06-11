@@ -1,0 +1,52 @@
+plugins {
+    id 'groovy'
+    id 'java'
+    id 'io.qameta.allure' version '2.11.2'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/org.aspectj/aspectjweaver
+//    agent('org.aspectj:aspectjweaver:1.9.22.1')
+
+    testImplementation("io.qameta.allure:allure-spock2")
+    testImplementation(platform("io.qameta.allure:allure-bom:2.24.0"))
+    testImplementation("io.qameta.allure:allure-junit-platform")
+    testImplementation 'io.qameta.allure:allure-junit5:2.27.0'
+
+
+
+    implementation 'org.apache.groovy:groovy:4.0.14'
+    testImplementation platform('org.junit:junit-bom:5.10.2')
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.2'
+    testImplementation 'org.spockframework:spock-core:2.3-groovy-4.0'
+    implementation 'org.gebish:geb-spock:7.0'
+    implementation 'org.gebish:geb-core:7.0'
+    implementation 'org.seleniumhq.selenium:selenium-java:4.21.0'
+    implementation 'org.apache.commons:commons-lang3:3.14.0'
+}
+
+allure {
+    adapter {
+        aspectjWeaver.set(true)
+        aspectjVersion.set("1.9.19")
+        autoconfigureListeners.set(true)
+//        autoconfigure.set(false)
+        afterEvaluate {
+            frameworks.forEach { adapter -> adapter.enabled.set(false) }
+        }
+    }
+}
+
+test {
+    ignoreFailures = true
+    useJUnitPlatform()
+    maxParallelForks = 3 // here three forks shall open in parallel
+    forkEvery = 1
+}
