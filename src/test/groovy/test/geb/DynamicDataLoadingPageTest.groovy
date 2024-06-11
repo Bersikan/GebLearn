@@ -9,8 +9,7 @@ class DynamicDataLoadingPageTest extends GebSpec {
 
     void "check random photo and name are generated"() {
         given:
-//        def fnPattern = ~"(First Name : \\p{L}{0,20})"
-        def fnPattern = ~"(First Name : name)"
+        def fnPattern = ~"(First Name : \\p{L}{0,20})"
         def lnPattern = ~"(Last Name : \\p{L}{0,20})"
         to DynamicDataLoadingPage
 
