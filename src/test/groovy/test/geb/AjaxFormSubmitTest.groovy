@@ -3,9 +3,11 @@ package test.geb
 import geb.spock.GebSpec
 import org.apache.commons.lang3.RandomStringUtils
 import pages.geb.pages.AjaxFormSubmitPage
+import spock.lang.Unroll
 
 class AjaxFormSubmitTest extends GebSpec {
-
+    
+    @Unroll
     def "check Ajax form submit when name: '#name' and description: '#description'"() {
         given:
         to AjaxFormSubmitPage
@@ -47,7 +49,7 @@ class AjaxFormSubmitTest extends GebSpec {
         }
     }
 
-
+    @Unroll
     def "check Ajax form submit: empty name leads to an error with any description: #description"() {
         given:
         to AjaxFormSubmitPage
