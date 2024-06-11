@@ -1,6 +1,7 @@
 package pages.geb.pages
 
 import geb.Page
+import io.qameta.allure.Step
 import org.openqa.selenium.By
 import org.openqa.selenium.support.ui.FluentWait
 
@@ -19,7 +20,7 @@ class FileDownloadDemoPage extends Page {
         generateFileButton(required: true) { $("#create") }
         downloadButton { $("#link-to-download") }
     }
-
+    @Step
     static String fileContent(String inputFilePath, String fileName) {
         String value = ""
         if (isFileDownloaded(inputFilePath, fileName)) {
@@ -28,7 +29,7 @@ class FileDownloadDemoPage extends Page {
         }
         return value
     }
-
+    @Step
     static boolean isFileDownloaded(String dirPath, String fileName) {
         File file = new File(dirPath, fileName)
         FluentWait<File> wait = new FluentWait<File>(file)
@@ -37,13 +38,13 @@ class FileDownloadDemoPage extends Page {
                 .withMessage("No file was downloaded")
         return wait.until(f -> f.exists() && f.canRead())
     }
-
+    @Step
     static void cleanDownloadFolder(String path) {
         Files.walk(Paths.get(path))
                 .filter(Files::isRegularFile)
                 .forEach(Files::delete)
     }
-
+    @Step
     static void createInputFileDir(String path){
         new File(path).mkdirs()
     }

@@ -1,6 +1,7 @@
 package test.geb
 
 import geb.spock.GebSpec
+import io.qameta.allure.Allure
 import org.apache.commons.lang3.RandomStringUtils
 import pages.geb.pages.FileDownloadDemoPage
 
@@ -25,6 +26,7 @@ class FileDownloadDemoPageTest extends GebSpec {
         generateFileButton.click()
         downloadButton.click()
 
+        Allure.step("Check file content")
         then:
         assert fileContent(inputFilesDirPath, fileName) == inputContent
     }
